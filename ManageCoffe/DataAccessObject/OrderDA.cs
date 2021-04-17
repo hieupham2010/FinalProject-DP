@@ -11,13 +11,13 @@ namespace ManageCoffe.DataAccess
 {
     public class OrderDA: IOrder
     {
-        private static OrderDA instance;
+        /*private static OrderDA instance;
         public static OrderDA Instance
         {
             get { if (instance == null) instance = new OrderDA(); return instance; }
             private set { instance = value; }
-        }
-        private OrderDA() { }
+        }*/
+        //private OrderDA() { }
 
         public void InsertOrder(int IDBill , int BeverID , int Amount) 
         {

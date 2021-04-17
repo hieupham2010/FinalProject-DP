@@ -49,10 +49,13 @@
     <Compile Include="DataAccessObject\AccountDA.cs" />
     <Compile Include="DataAccessObject\BillInforDA.cs" />
     <Compile Include="DataAccessObject\DataProvider.cs" />
+    <Compile Include="DataAccessObject\DeleteOrderCommand.cs" />
+    <Compile Include="DataAccessObject\ICommand.cs" />
     <Compile Include="DataAccessObject\IDAO.cs" />
     <Compile Include="DataAccessObject\IOrder.cs" />
     <Compile Include="DataAccessObject\MenuDA.cs" />
-    <Compile Include="DataAccessObject\OrderDA.cs" />
+    <Compile Include="DataAccessObject\InsertOrderCommand.cs" />
+    <Compile Include="DataAccessObject\OrderDa.cs" />
     <Compile Include="DataTransferObject\AccountBuilder.cs" />
     <Compile Include="DataTransferObject\AccountDT.cs" />
     <Compile Include="DataTransferObject\BillInforDT.cs" />

@@ -16,6 +16,7 @@ namespace ManageCoffe
 {
     public partial class Form_Admin : Form
     {
+        private OrderDA orderDa = new OrderDA();
         public Form_Admin()
         {
             InitializeComponent();
@@ -55,7 +56,7 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
             DateTime Date = dateTimePicker1.Value;
-            List<OrderInforDT> listBillInfor = OrderDA.Instance.GetListOrderPerDay(Date);
+            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerDay(Date);
             int TotalRevenue = 0;
             foreach (OrderInforDT item in listBillInfor)
             {
@@ -72,7 +73,7 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
             
-            List<OrderInforDT> listBillInfor = OrderDA.Instance.GetListOrderPerMonth(dateTimePicker1.Value, dateTimePicker1.Value);
+            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerMonth(dateTimePicker1.Value, dateTimePicker1.Value);
             int TotalRevenue = 0;
             foreach (OrderInforDT item in listBillInfor)
             {
@@ -89,7 +90,7 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
 
-            List<OrderInforDT> listBillInfor = OrderDA.Instance.GetListOrderPerYear(dateTimePicker1.Value);
+            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerYear(dateTimePicker1.Value);
             int TotalRevenue = 0;
             foreach (OrderInforDT item in listBillInfor)
             {

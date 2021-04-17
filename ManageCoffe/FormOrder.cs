@@ -1,5 +1,6 @@
 ﻿using ManageCoffe.DAO;
 using ManageCoffe.DataAccess;
+using ManageCoffe.DataAccessObject;
 using ManageCoffe.DataTransfer;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ManageCoffe
     public partial class FormOrder : Form
     {
         private AccountDT loginAccount;
-
+        private OrderDA orderDa = new OrderDA();
         public FormOrder(AccountDT acc)
         {
             InitializeComponent();
@@ -55,7 +56,8 @@ namespace ManageCoffe
         }
         void LoadOrderList()
         {
-            List<OrderInforDT> orderList = OrderDA.Instance.GetListOrder();
+            
+            List<OrderInforDT> orderList = orderDa.GetListOrder();
             int totalPrice = 0;
             foreach(OrderInforDT item in orderList)
             {
@@ -91,7 +93,9 @@ namespace ManageCoffe
             {
                 int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
                 int IDBill = BillInforDA.Instance.getIDBillInfor();
-                OrderDA.Instance.DeleteBeverageFromOrder(BeverID, IDBill);
+                ICommand deleteOrder = new DeleteOrderCommand(orderDa, BeverID, IDBill);
+                deleteOrder.execute();
+                /*orderDa.DeleteBeverageFromOrder(BeverID, IDBill);*/
                 if (listView_Order.Items.Count <= 1)
                 {
                     listView_Order.Items.Clear();
@@ -115,6 +119,7 @@ namespace ManageCoffe
 
         private void button_AddBeverage_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (listView_Order.Items.Count == 0)
@@ -125,15 +130,17 @@ namespace ManageCoffe
                 listView_Order.Items.Clear();
                 int IDBill = BillInforDA.Instance.getIDBillInfor();
                 int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
-                bool CheckBeverages = OrderDA.Instance.CheckExistBeverage(BeverID, IDBill);
+                bool CheckBeverages = orderDa.CheckExistBeverage(BeverID, IDBill);
                 int Amount = (int)numericUpDown_Amount.Value;
+                ICommand insertOrder = new InsertOrderCommand(orderDa, BeverID, IDBill, Amount);
                 if (CheckBeverages)
                 {
-                    OrderDA.Instance.UpdateAmountOrder(Amount, BeverID, IDBill);
+                    orderDa.UpdateAmountOrder(Amount, BeverID, IDBill);
                 }
                 else
                 {
-                    OrderDA.Instance.InsertOrder(IDBill, BeverID, Amount);
+                    insertOrder.execute();
+                    /*orderDa.InsertOrder(IDBill, BeverID, Amount);*/
                 }
                 LoadOrderList();
             }
