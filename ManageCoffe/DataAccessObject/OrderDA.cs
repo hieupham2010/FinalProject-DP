@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccess
 {
-    public class OrderDA
+    public class OrderDA: IOrder
     {
         private static OrderDA instance;
         public static OrderDA Instance
@@ -40,7 +40,7 @@ namespace ManageCoffe.DataAccess
             string query = "DELETE OrderBever WHERE BeverID = " + BeverID + "AND IDBill = " + IDBill + "";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public List<OrderInforDT> getListOrder()
+        public List<OrderInforDT> GetListOrder()
         {
             string query = "EXEC SP_OrderInfor";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
@@ -52,7 +52,7 @@ namespace ManageCoffe.DataAccess
             }
             return OrderList;
         }
-        public List<OrderInforDT> getListOrderPerDay(DateTime Date)
+        public List<OrderInforDT> GetListOrderPerDay(DateTime Date)
         {
             string query = "EXEC SP_TotalRevenuePerDay @Date = '"+ Date +"'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
@@ -64,7 +64,7 @@ namespace ManageCoffe.DataAccess
             }
             return OrderList;
         }
-        public List<OrderInforDT> getListOrderPerMonth(DateTime Month , DateTime Year)
+        public List<OrderInforDT> GetListOrderPerMonth(DateTime Month , DateTime Year)
         {
             string query = "EXEC SP_TotalRevenuePerMonth @Month = '" + Month + "' , @Year = '"+ Year +"'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
@@ -76,7 +76,7 @@ namespace ManageCoffe.DataAccess
             }
             return OrderList;
         }
-        public List<OrderInforDT> getListOrderPerYear(DateTime Year)
+        public List<OrderInforDT> GetListOrderPerYear(DateTime Year)
         {
             string query = "EXEC SP_TotalRevenuePerYear @Year = '" + Year + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);

@@ -1,4 +1,5 @@
 ﻿using ManageCoffe.DAO;
+using ManageCoffe.DataAccessObject;
 using ManageCoffe.DataTransfer;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccess
 {
-    public class MenuDA
+    public class MenuDA : IDAO<MenuDT>
     {
         private static MenuDA instance;
         public static MenuDA Instance
@@ -19,7 +20,7 @@ namespace ManageCoffe.DataAccess
         }
         private MenuDA() { }
 
-        public List<MenuDT> getListBeveragesToMenu()
+        public List<MenuDT> GetAll()
         {
             string query = "SELECT * FROM Beverages";
             List<MenuDT> listMenu = new List<MenuDT>();
@@ -43,7 +44,7 @@ namespace ManageCoffe.DataAccess
             }
             return listMenu;
         }
-        public int getIdFromSelectedTextbox(string Name)
+        public int GetIdFromSelectedTextbox(string Name)
         {
             string query = "SELECT * FROM Beverages WHERE Name = N'" + Name + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
@@ -53,28 +54,28 @@ namespace ManageCoffe.DataAccess
             }
             return -1;
         }
-        public void AddBeverages(string Name , int Price)
+        public void Create(MenuDT menu)
         {
-            string query = "INSERT Beverages VALUES(N'" + Name + "'," + Price + ")";
+            string query = "INSERT Beverages VALUES(N'" + menu.Name1 + "'," + menu.Price1 + ")";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public void DeleteBeverage(int BeverID)
+        public void Delete(int BeverID)
         {
             string query = "DELETE Beverages WHERE BeverID = " + BeverID +"";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public void UpdateBeverage(string Name , int Price , int BeverID)
+        public void Update(MenuDT menu)
         {
-            string query = "UPDATE Beverages SET Name = N'" + Name + "', Price = " + Price + "WHERE BeverID = " + BeverID + "";
+            string query = "UPDATE Beverages SET Name = N'" + menu.Name1 + "', Price = " + menu.Price1 + "WHERE BeverID = " + menu.BeverID1 + "";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public bool CheckExistBeverages(string Name)
+        public bool CheckExists(string Name)
         {
             string query = "SELECT * FROM Beverages WHERE Name = N'" + Name + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data.Rows.Count >= 1;
         }
-        public int getIDByBeveragesName(string Name)
+        public int GetIDByBeveragesName(string Name)
         {
             string query = "SELECT * FROM Beverages WHERE Name = N'" + Name + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);

@@ -46,16 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\AccountDA.cs" />
-    <Compile Include="DataAccess\BillInforDA.cs" />
-    <Compile Include="DataAccess\DataProvider.cs" />
-    <Compile Include="DataAccess\MenuDA.cs" />
-    <Compile Include="DataAccess\OrderDA.cs" />
-    <Compile Include="DataTransfer\AccountDT.cs" />
-    <Compile Include="DataTransfer\BillInforDT.cs" />
-    <Compile Include="DataTransfer\MenuDT.cs" />
-    <Compile Include="DataTransfer\OrderDT.cs" />
-    <Compile Include="DataTransfer\OrderInforDT.cs" />
+    <Compile Include="DataAccessObject\AccountDA.cs" />
+    <Compile Include="DataAccessObject\BillInforDA.cs" />
+    <Compile Include="DataAccessObject\DataProvider.cs" />
+    <Compile Include="DataAccessObject\IDAO.cs" />
+    <Compile Include="DataAccessObject\IOrder.cs" />
+    <Compile Include="DataAccessObject\MenuDA.cs" />
+    <Compile Include="DataAccessObject\OrderDA.cs" />
+    <Compile Include="DataTransferObject\AccountBuilder.cs" />
+    <Compile Include="DataTransferObject\AccountDT.cs" />
+    <Compile Include="DataTransferObject\BillInforDT.cs" />
+    <Compile Include="DataTransferObject\IAccountBuilder.cs" />
+    <Compile Include="DataTransferObject\IMenuBuilder.cs" />
+    <Compile Include="DataTransferObject\MenuBuilder.cs" />
+    <Compile Include="DataTransferObject\MenuDT.cs" />
+    <Compile Include="DataTransferObject\OrderDT.cs" />
+    <Compile Include="DataTransferObject\OrderInforDT.cs" />
     <Compile Include="FormOrder.cs">
       <SubType>Form</SubType>
     </Compile>

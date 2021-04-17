@@ -10,3 +10,15 @@ D:\Assignments\HK1_3\CNPM\Final-Project\ManageCoffe\obj\Debug\ManageCoffe.csproj
 D:\Assignments\HK1_3\CNPM\Final-Project\ManageCoffe\obj\Debug\ManageCoffe.csproj.CoreCompileInputs.cache
 D:\Assignments\HK1_3\CNPM\Final-Project\ManageCoffe\obj\Debug\ManageCoffe.exe
 D:\Assignments\HK1_3\CNPM\Final-Project\ManageCoffe\obj\Debug\ManageCoffe.pdb
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.csprojAssemblyReference.cache
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.FormOrder.resources
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.Form_Admin.resources
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.Form_Login.resources
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.Properties.Resources.resources
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.csproj.GenerateResource.cache
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.csproj.CoreCompileInputs.cache
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.exe
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\obj\Debug\ManageCoffe.pdb
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\bin\Debug\ManageCoffe.exe.config
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\bin\Debug\ManageCoffe.exe
+D:\Assignments\HK2_3\Design Pattern\CoffeeManagement\ManageCoffe\bin\Debug\ManageCoffe.pdb

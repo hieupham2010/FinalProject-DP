@@ -45,7 +45,7 @@ namespace ManageCoffe
         void LoadMenuBeverages()
         {
             listView_Menu.Items.Clear();
-            List<MenuDT> menuList = MenuDA.Instance.getListBeveragesToMenu();
+            List<MenuDT> menuList = MenuDA.Instance.GetAll();
             foreach(MenuDT item in menuList)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
@@ -55,7 +55,7 @@ namespace ManageCoffe
         }
         void LoadOrderList()
         {
-            List<OrderInforDT> orderList = OrderDA.Instance.getListOrder();
+            List<OrderInforDT> orderList = OrderDA.Instance.GetListOrder();
             int totalPrice = 0;
             foreach(OrderInforDT item in orderList)
             {
@@ -89,7 +89,7 @@ namespace ManageCoffe
         {
             try
             {
-                int BeverID = MenuDA.Instance.getIdFromSelectedTextbox(textBox_BeverageSelected.Text);
+                int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
                 int IDBill = BillInforDA.Instance.getIDBillInfor();
                 OrderDA.Instance.DeleteBeverageFromOrder(BeverID, IDBill);
                 if (listView_Order.Items.Count <= 1)
@@ -124,7 +124,7 @@ namespace ManageCoffe
                 }
                 listView_Order.Items.Clear();
                 int IDBill = BillInforDA.Instance.getIDBillInfor();
-                int BeverID = MenuDA.Instance.getIdFromSelectedTextbox(textBox_BeverageSelected.Text);
+                int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
                 bool CheckBeverages = OrderDA.Instance.CheckExistBeverage(BeverID, IDBill);
                 int Amount = (int)numericUpDown_Amount.Value;
                 if (CheckBeverages)

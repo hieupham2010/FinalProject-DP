@@ -1,4 +1,5 @@
 ﻿using ManageCoffe.DAO;
+using ManageCoffe.DataAccessObject;
 using ManageCoffe.DataTransfer;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccessLayer
 {
-    public class AccountDA
+    public class AccountDA: IDAO<AccountDT>
     {
         private static AccountDA instance;
         public static AccountDA Instance
@@ -33,7 +34,7 @@ namespace ManageCoffe.DataAccessLayer
             }
             return null;
         }
-        public List<AccountDT> getListAccount()
+        public List<AccountDT> GetAll()
         {
             string query = "SELECT * FROM Account WHERE TypeAccount = 1";
             List<AccountDT> listAccount = new List<AccountDT>();
@@ -55,26 +56,36 @@ namespace ManageCoffe.DataAccessLayer
             }
             return null;
         }
-        public void CreateAccount(string UserName , string Password , string NameDisplay , int Type)
+        public void Create(AccountDT account)
         {
-            string query = string.Format("INSERT Account VALUES('{0}' , '{1}' , N'{2}' , {3})", UserName, Password, NameDisplay, Type);
+            string query = string.Format("INSERT Account VALUES('{0}' , '{1}' , N'{2}' , {3})", account.UserName1, account.Password1, account.DisplayName1, account.Type1);
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public void DeleteAccount(string UserName)
+        public void Delete(string UserName)
         {
             string query = "DELETE Account WHERE UserName = '" + UserName + "'";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public void UpdateAccount(string UserName , string Password , string NameDisplay)
+        public void Update(AccountDT account)
         {
-            string query = "UPDATE Account SET PassWord = '" + Password + "' , NameDisplay = '" + NameDisplay + "' WHERE UserName = '" + UserName + "'";
+            string query = "UPDATE Account SET PassWord = '" + account.Password1 + "' , NameDisplay = '" + account.DisplayName1 + "' WHERE UserName = '" + account.UserName1 + "'";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public bool CheckExistAccount(string UserName)
+        public bool CheckExists(string UserName)
         {
             string query = "SELECT * FROM Account WHERE UserName = '" + UserName + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data.Rows.Count >= 1;
+        }
+
+        public List<AccountDT> Search(string Name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
