@@ -17,8 +17,8 @@ namespace ManageCoffe.DataAccess
 
         void UpdateAmountOrder(int Amount, int BeverID, int IDBill);
 
-        List<OrderInforDT> GetListOrder();
-        List<OrderInforDT> GetListOrderPerMonth(DateTime Month, DateTime Year);
-        List<OrderInforDT> GetListOrderPerYear(DateTime Year);
+        List<OrderInforDTO> GetListOrder();
+        List<OrderInforDTO> GetListOrderPerMonth(DateTime Month, DateTime Year);
+        List<OrderInforDTO> GetListOrderPerYear(DateTime Year);
     }
 }

@@ -13,9 +13,9 @@ namespace ManageCoffe.DataTransferObject
         private string Password;
         private string NameDisplay;
         private int TypeAccount;
-        public AccountDT Build()
+        public AccountDTO Build()
         {
-            return new AccountDT(UserName, NameDisplay, TypeAccount, Password);
+            return new AccountDTO(UserName, NameDisplay, TypeAccount, Password);
         }
 
         public IAccountBuilder SetDisplayName(string NameDisplay)

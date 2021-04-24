@@ -12,8 +12,8 @@ namespace ManageCoffe.DataAccessObject
         private int BeverId;
         private int IdBill;
         private int Amount;
-        private OrderDA order;
-        public InsertOrderCommand(OrderDA order, int BeverId, int IdBill, int Amount)
+        private OrderDAO order;
+        public InsertOrderCommand(OrderDAO order, int BeverId, int IdBill, int Amount)
         {
             this.order = order;
             this.BeverId = BeverId;

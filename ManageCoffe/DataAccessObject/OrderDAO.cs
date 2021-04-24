@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccess
 {
-    public class OrderDA: IOrder
+    public class OrderDAO: IOrder
     {
         /*private static OrderDA instance;
         public static OrderDA Instance
@@ -40,50 +40,50 @@ namespace ManageCoffe.DataAccess
             string query = "DELETE OrderBever WHERE BeverID = " + BeverID + "AND IDBill = " + IDBill + "";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public List<OrderInforDT> GetListOrder()
+        public List<OrderInforDTO> GetListOrder()
         {
             string query = "EXEC SP_OrderInfor";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            List<OrderInforDT> OrderList = new List<OrderInforDT>();
+            List<OrderInforDTO> OrderList = new List<OrderInforDTO>();
             foreach(DataRow item in data.Rows)
             {
-                OrderInforDT order = new OrderInforDT(item);
+                OrderInforDTO order = new OrderInforDTO(item);
                 OrderList.Add(order);
             }
             return OrderList;
         }
-        public List<OrderInforDT> GetListOrderPerDay(DateTime Date)
+        public List<OrderInforDTO> GetListOrderPerDay(DateTime Date)
         {
             string query = "EXEC SP_TotalRevenuePerDay @Date = '"+ Date +"'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            List<OrderInforDT> OrderList = new List<OrderInforDT>();
+            List<OrderInforDTO> OrderList = new List<OrderInforDTO>();
             foreach (DataRow item in data.Rows)
             {
-                OrderInforDT order = new OrderInforDT(item);
+                OrderInforDTO order = new OrderInforDTO(item);
                 OrderList.Add(order);
             }
             return OrderList;
         }
-        public List<OrderInforDT> GetListOrderPerMonth(DateTime Month , DateTime Year)
+        public List<OrderInforDTO> GetListOrderPerMonth(DateTime Month , DateTime Year)
         {
             string query = "EXEC SP_TotalRevenuePerMonth @Month = '" + Month + "' , @Year = '"+ Year +"'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            List<OrderInforDT> OrderList = new List<OrderInforDT>();
+            List<OrderInforDTO> OrderList = new List<OrderInforDTO>();
             foreach (DataRow item in data.Rows)
             {
-                OrderInforDT order = new OrderInforDT(item);
+                OrderInforDTO order = new OrderInforDTO(item);
                 OrderList.Add(order);
             }
             return OrderList;
         }
-        public List<OrderInforDT> GetListOrderPerYear(DateTime Year)
+        public List<OrderInforDTO> GetListOrderPerYear(DateTime Year)
         {
             string query = "EXEC SP_TotalRevenuePerYear @Year = '" + Year + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            List<OrderInforDT> OrderList = new List<OrderInforDT>();
+            List<OrderInforDTO> OrderList = new List<OrderInforDTO>();
             foreach (DataRow item in data.Rows)
             {
-                OrderInforDT order = new OrderInforDT(item);
+                OrderInforDTO order = new OrderInforDTO(item);
                 OrderList.Add(order);
             }
             return OrderList;

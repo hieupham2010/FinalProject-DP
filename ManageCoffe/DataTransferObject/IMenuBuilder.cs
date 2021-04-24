@@ -15,6 +15,6 @@ namespace ManageCoffe.DataTransferObject
 
         IMenuBuilder SetPrice(int Price);
 
-        MenuDT Build();
+        MenuDTO Build();
     }
 }

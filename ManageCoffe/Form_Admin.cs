@@ -16,14 +16,14 @@ namespace ManageCoffe
 {
     public partial class Form_Admin : Form
     {
-        private OrderDA orderDa = new OrderDA();
+        private OrderDAO orderDa = new OrderDAO();
         public Form_Admin()
         {
             InitializeComponent();
-            Load();
+            Loading();
         }
 
-        void Load()
+        void Loading()
         {
             LoadListBeverages();
             LoadListAccount();
@@ -32,8 +32,8 @@ namespace ManageCoffe
         void LoadListBeverages()
         {
             listView_Beverages.Items.Clear();
-            List<MenuDT> menuList = MenuDA.Instance.GetAll();
-            foreach (MenuDT item in menuList)
+            List<MenuDTO> menuList = MenuDAO.Instance.GetAll();
+            foreach (MenuDTO item in menuList)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -43,8 +43,8 @@ namespace ManageCoffe
         void LoadListAccount()
         {
             listView_Account.Items.Clear();
-            List<AccountDT> listAccount = AccountDA.Instance.GetAll();
-            foreach(AccountDT item in listAccount)
+            List<AccountDTO> listAccount = AccountDAO.Instance.GetAll();
+            foreach(AccountDTO item in listAccount)
             {
                 ListViewItem listviewitem = new ListViewItem(item.UserName1);
                 listviewitem.SubItems.Add(item.DisplayName1);
@@ -56,9 +56,9 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
             DateTime Date = dateTimePicker1.Value;
-            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerDay(Date);
+            List<OrderInforDTO> listBillInfor = orderDa.GetListOrderPerDay(Date);
             int TotalRevenue = 0;
-            foreach (OrderInforDT item in listBillInfor)
+            foreach (OrderInforDTO item in listBillInfor)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -73,9 +73,9 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
             
-            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerMonth(dateTimePicker1.Value, dateTimePicker1.Value);
+            List<OrderInforDTO> listBillInfor = orderDa.GetListOrderPerMonth(dateTimePicker1.Value, dateTimePicker1.Value);
             int TotalRevenue = 0;
-            foreach (OrderInforDT item in listBillInfor)
+            foreach (OrderInforDTO item in listBillInfor)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -90,9 +90,9 @@ namespace ManageCoffe
         {
             listView_Revenue.Items.Clear();
 
-            List<OrderInforDT> listBillInfor = orderDa.GetListOrderPerYear(dateTimePicker1.Value);
+            List<OrderInforDTO> listBillInfor = orderDa.GetListOrderPerYear(dateTimePicker1.Value);
             int TotalRevenue = 0;
-            foreach (OrderInforDT item in listBillInfor)
+            foreach (OrderInforDTO item in listBillInfor)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -106,8 +106,8 @@ namespace ManageCoffe
         private void button_SearchAccount_Click(object sender, EventArgs e)
         {
             listView_Beverages.Items.Clear();
-            List<MenuDT> newMenu = MenuDA.Instance.SearchBeveragesByName(textBox_SearchBeverages.Text);
-            foreach (MenuDT item in newMenu)
+            List<MenuDTO> newMenu = MenuDAO.Instance.SearchBeveragesByName(textBox_SearchBeverages.Text);
+            foreach (MenuDTO item in newMenu)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -121,7 +121,7 @@ namespace ManageCoffe
             {
                 textBox_NameBeverage.Text = items.SubItems[0].Text;
                 textBox_Price.Text = items.SubItems[1].Text;
-                textBox_BeverID.Text = MenuDA.Instance.GetIDByBeveragesName(items.SubItems[0].Text).ToString();
+                textBox_BeverID.Text = MenuDAO.Instance.GetIDByBeveragesName(items.SubItems[0].Text).ToString();
             }
         }
 
@@ -132,7 +132,7 @@ namespace ManageCoffe
             {
                 string Name = textBox_NameBeverage.Text;
                 int Price = int.Parse(textBox_Price.Text);
-                bool checkBeverages = MenuDA.Instance.CheckExists(Name);
+                bool checkBeverages = MenuDAO.Instance.CheckExists(Name);
                 if (checkBeverages)
                 {
                     MessageBox.Show("Đồ uống đã tồn tại" , "Thông Báo");
@@ -140,7 +140,7 @@ namespace ManageCoffe
                 else
                 {
                     IMenuBuilder menu = new MenuBuilder().SetName(Name).SetPrice(Price);
-                    MenuDA.Instance.Create(menu.Build());
+                    MenuDAO.Instance.Create(menu.Build());
                     textBox_BeverID.Clear();
                     textBox_NameBeverage.Clear();
                     textBox_Price.Clear();
@@ -160,7 +160,7 @@ namespace ManageCoffe
             try
             {
                 int BeverID = int.Parse(textBox_BeverID.Text);
-                MenuDA.Instance.Delete(BeverID);
+                MenuDAO.Instance.Delete(BeverID);
                 textBox_BeverID.Clear();
                 textBox_NameBeverage.Clear();
                 textBox_Price.Clear();
@@ -181,7 +181,7 @@ namespace ManageCoffe
                 string Name = textBox_NameBeverage.Text;
                 int Price = int.Parse(textBox_Price.Text);
                 IMenuBuilder menu = new MenuBuilder().SetBeverId(BeverID).SetName(Name).SetPrice(Price);
-                MenuDA.Instance.Update(menu.Build());
+                MenuDAO.Instance.Update(menu.Build());
                 textBox_BeverID.Clear();
                 textBox_NameBeverage.Clear();
                 textBox_Price.Clear();
@@ -208,7 +208,7 @@ namespace ManageCoffe
                     string NameDisplay = textBox_DisplayName.Text;
                     int Type = int.Parse(textBox_Type.Text);
                     IAccountBuilder account = new AccountBuilder().SetUserName(UserName).SetPassword(Password).SetDisplayName(NameDisplay).SetTypeAccount(Type);
-                    AccountDA.Instance.Create(account.Build());
+                    AccountDAO.Instance.Create(account.Build());
                     textBox_UserName.Clear();
                     textBox_Password.Clear();
                     textBox_DisplayName.Clear();
@@ -226,9 +226,9 @@ namespace ManageCoffe
         {
 
             string UserName = textBox_UserName.Text;
-            bool checkAccount = AccountDA.Instance.CheckExists(textBox_UserName.Text);
+            bool checkAccount = AccountDAO.Instance.CheckExists(textBox_UserName.Text);
             if(checkAccount) {
-                AccountDA.Instance.Delete(UserName);
+                AccountDAO.Instance.Delete(UserName);
                 textBox_UserName.Clear();
                 textBox_Password.Clear();
                 textBox_DisplayName.Clear();
@@ -249,11 +249,11 @@ namespace ManageCoffe
             string UserName = textBox_UserName.Text;
             string Password = textBox_Password.Text;
             string NameDisplay = textBox_DisplayName.Text;
-            bool checkAccount = AccountDA.Instance.CheckExists(textBox_UserName.Text);
+            bool checkAccount = AccountDAO.Instance.CheckExists(textBox_UserName.Text);
             if (checkAccount)
             {
                 IAccountBuilder account = new AccountBuilder().SetUserName(UserName).SetPassword(Password).SetDisplayName(NameDisplay);
-                AccountDA.Instance.Update(account.Build());
+                AccountDAO.Instance.Update(account.Build());
                 textBox_UserName.Clear();
                 textBox_Password.Clear();
                 textBox_DisplayName.Clear();
@@ -288,7 +288,7 @@ namespace ManageCoffe
                 textBox_UserName.Text = items.SubItems[0].Text;
                 textBox_DisplayName.Text = items.SubItems[1].Text;
                 textBox_Type.Text = items.SubItems[2].Text;
-                textBox_Password.Text = AccountDA.Instance.getPasswordByUserName(textBox_UserName.Text);
+                textBox_Password.Text = AccountDAO.Instance.getPasswordByUserName(textBox_UserName.Text);
             }
         }
 

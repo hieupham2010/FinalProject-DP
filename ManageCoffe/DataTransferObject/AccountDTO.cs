@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataTransfer
 {
-    public class AccountDT
+    public class AccountDTO
     {
         private string UserName;
         private string Password;
         private string NameDisplay;
         private int TypeAccount;
-        public AccountDT(string UserName , string NameDisplay , int TypeAccount , string Password = null)
+        public AccountDTO(string UserName , string NameDisplay , int TypeAccount , string Password = null)
         {
             this.UserName = UserName;
             this.NameDisplay = NameDisplay;
             this.TypeAccount = TypeAccount;
             this.Password = Password;
         }
-        public AccountDT(DataRow row)
+        public AccountDTO(DataRow row)
         {
             this.UserName = row["UserName"].ToString();
             this.NameDisplay = row["NameDisplay"].ToString();

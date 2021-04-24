@@ -45,7 +45,7 @@ namespace ManageCoffe
             string Password = textBox_Password.Text;
             if (CheckLogin(UserName , Password))
             {
-                AccountDT loginAccount = AccountDA.Instance.getAccountByUserName(UserName);
+                AccountDTO loginAccount = AccountDAO.Instance.getAccountByUserName(UserName);
                 FormOrder fo = new FormOrder(loginAccount);
                 fo.Hide();
                 fo.ShowDialog();
@@ -58,7 +58,7 @@ namespace ManageCoffe
         }
         public bool CheckLogin(string UserName , string Password)
         {
-            return AccountDA.Instance.Login(UserName , Password);
+            return AccountDAO.Instance.Login(UserName , Password);
         }
     }
 }

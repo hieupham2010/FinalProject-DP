@@ -10,36 +10,36 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccess
 {
-    public class MenuDA : IDAO<MenuDT>
+    public class MenuDAO
     {
-        private static MenuDA instance;
-        public static MenuDA Instance
+        private static MenuDAO instance;
+        public static MenuDAO Instance
         {
-            get { if (instance == null) instance = new MenuDA(); return instance; }
+            get { if (instance == null) instance = new MenuDAO(); return instance; }
             private set { instance = value; }
         }
-        private MenuDA() { }
+        private MenuDAO() { }
 
-        public List<MenuDT> GetAll()
+        public List<MenuDTO> GetAll()
         {
             string query = "SELECT * FROM Beverages";
-            List<MenuDT> listMenu = new List<MenuDT>();
+            List<MenuDTO> listMenu = new List<MenuDTO>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach(DataRow item in data.Rows)
             {
-                MenuDT menu = new MenuDT(item);
+                MenuDTO menu = new MenuDTO(item);
                 listMenu.Add(menu);
             }
             return listMenu;
         }
-        public List<MenuDT> SearchBeveragesByName(string Name)
+        public List<MenuDTO> SearchBeveragesByName(string Name)
         {
             string query = "SELECT * FROM Beverages WHERE Name LIKE N'%" + Name + "%'";
-            List<MenuDT> listMenu = new List<MenuDT>();
+            List<MenuDTO> listMenu = new List<MenuDTO>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
-                MenuDT menu = new MenuDT(item);
+                MenuDTO menu = new MenuDTO(item);
                 listMenu.Add(menu);
             }
             return listMenu;
@@ -50,11 +50,11 @@ namespace ManageCoffe.DataAccess
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
-                return new MenuDT(item).BeverID1;
+                return new MenuDTO(item).BeverID1;
             }
             return -1;
         }
-        public void Create(MenuDT menu)
+        public void Create(MenuDTO menu)
         {
             string query = "INSERT Beverages VALUES(N'" + menu.Name1 + "'," + menu.Price1 + ")";
             DataProvider.Instance.ExecuteQuery(query);
@@ -64,7 +64,7 @@ namespace ManageCoffe.DataAccess
             string query = "DELETE Beverages WHERE BeverID = " + BeverID +"";
             DataProvider.Instance.ExecuteQuery(query);
         }
-        public void Update(MenuDT menu)
+        public void Update(MenuDTO menu)
         {
             string query = "UPDATE Beverages SET Name = N'" + menu.Name1 + "', Price = " + menu.Price1 + "WHERE BeverID = " + menu.BeverID1 + "";
             DataProvider.Instance.ExecuteQuery(query);
@@ -81,7 +81,7 @@ namespace ManageCoffe.DataAccess
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach(DataRow item in data.Rows)
             {
-                return new MenuDT(item).BeverID1;
+                return new MenuDTO(item).BeverID1;
             }
             return -1;
         }

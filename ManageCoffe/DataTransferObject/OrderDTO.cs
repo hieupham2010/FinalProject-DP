@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataTransfer
 {
-    public class OrderDT
+    public class OrderDTO
     {
         private int OrderID;
         private int IDBill;
         private int BeverID;
         private int Amount;
-        public OrderDT(int OrderID , int IDBill , int BeverID , int Amount)
+        public OrderDTO(int OrderID , int IDBill , int BeverID , int Amount)
         {
             this.OrderID = OrderID;
             this.IDBill = IDBill;
@@ -24,15 +24,13 @@ namespace ManageCoffe.DataTransfer
         public int IDBill1 { get => IDBill; set => IDBill = value; }
         public int BeverID1 { get => BeverID; set => BeverID = value; }
         public int Amount1 { get => Amount; set => Amount = value; }
-        public OrderDT(DataRow row)
+        public OrderDTO(DataRow row)
         {
             this.OrderID = (int)row["OrderID"];
             this.IDBill = (int)row["IDBill"];
             this.BeverID = (int)row["BeverID"];
             this.Amount = (int)row["Amount"];
         }
-
-
         
     }
 }

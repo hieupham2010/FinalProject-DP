@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataTransfer
 {
-    public class MenuDT
+    public class MenuDTO
     {
         private int BeverID;
         private string Name;
         private int Price;
-        public MenuDT(int BeverID , string Name , int Price)
+        public MenuDTO(int BeverID , string Name , int Price)
         {
             this.BeverID = BeverID;
             this.Name = Name;
             this.Price = Price;
         }
-        public MenuDT(DataRow row)
+        public MenuDTO(DataRow row)
         {
             this.BeverID = (int)row["BeverID"];
             this.Name = row["Name"].ToString();

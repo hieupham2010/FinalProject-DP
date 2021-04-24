@@ -17,6 +17,6 @@ namespace ManageCoffe.DataTransferObject
 
         IAccountBuilder SetPassword(string Password);
 
-        AccountDT Build();
+        AccountDTO Build();
     }
 }

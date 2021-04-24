@@ -16,6 +16,9 @@ namespace ManageCoffe.DataAccessObject
 
         void Update(T t);
 
+
+        void Delete(string t);
+
         bool CheckExists(string Name);
 
     }

@@ -16,15 +16,15 @@ namespace ManageCoffe
 {
     public partial class FormOrder : Form
     {
-        private AccountDT loginAccount;
-        private OrderDA orderDa = new OrderDA();
-        public FormOrder(AccountDT acc)
+        private AccountDTO loginAccount;
+        private OrderDAO orderDa = new OrderDAO();
+        public FormOrder(AccountDTO acc)
         {
             InitializeComponent();
             this.LoginAccount = acc;
-            Load();
+            Loading();
         }
-        void Load()
+        void Loading()
         {
             LoadMenuBeverages();
             
@@ -34,7 +34,7 @@ namespace ManageCoffe
             adminToolStripMenuItem.Enabled = type == 0;
             tàiKhoảnToolStripMenuItem.Text += "(" + loginAccount.DisplayName1 + ")";
         }
-        public AccountDT LoginAccount {
+        public AccountDTO LoginAccount {
             get { return loginAccount; }
             set { loginAccount = value; changeAccount(loginAccount.Type1); }
         }
@@ -46,8 +46,8 @@ namespace ManageCoffe
         void LoadMenuBeverages()
         {
             listView_Menu.Items.Clear();
-            List<MenuDT> menuList = MenuDA.Instance.GetAll();
-            foreach(MenuDT item in menuList)
+            List<MenuDTO> menuList = MenuDAO.Instance.GetAll();
+            foreach(MenuDTO item in menuList)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -57,9 +57,9 @@ namespace ManageCoffe
         void LoadOrderList()
         {
             
-            List<OrderInforDT> orderList = orderDa.GetListOrder();
+            List<OrderInforDTO> orderList = orderDa.GetListOrder();
             int totalPrice = 0;
-            foreach(OrderInforDT item in orderList)
+            foreach(OrderInforDTO item in orderList)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -79,8 +79,8 @@ namespace ManageCoffe
         private void button_FindBeverages_Click(object sender, EventArgs e)
         {
             listView_Menu.Items.Clear();
-            List<MenuDT> newMenu = MenuDA.Instance.SearchBeveragesByName(textBox_FindBeverages.Text);
-            foreach (MenuDT item in newMenu)
+            List<MenuDTO> newMenu = MenuDAO.Instance.SearchBeveragesByName(textBox_FindBeverages.Text);
+            foreach (MenuDTO item in newMenu)
             {
                 ListViewItem listviewitem = new ListViewItem(item.Name1);
                 listviewitem.SubItems.Add(item.Price1.ToString());
@@ -91,8 +91,8 @@ namespace ManageCoffe
         {
             try
             {
-                int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
-                int IDBill = BillInforDA.Instance.getIDBillInfor();
+                int BeverID = MenuDAO.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
+                int IDBill = BillInforDAO.Instance.getIDBillInfor();
                 ICommand deleteOrder = new DeleteOrderCommand(orderDa, BeverID, IDBill);
                 deleteOrder.execute();
                 /*orderDa.DeleteBeverageFromOrder(BeverID, IDBill);*/
@@ -100,7 +100,7 @@ namespace ManageCoffe
                 {
                     listView_Order.Items.Clear();
                     textBox_TotalPrice.Text = "0";
-                    BillInforDA.Instance.DeleteBill();
+                    BillInforDAO.Instance.DeleteBill();
                 }
                 else
                 {
@@ -124,12 +124,12 @@ namespace ManageCoffe
             {
                 if (listView_Order.Items.Count == 0)
                 {
-                    BillInforDA.Instance.CreateBill();
+                    BillInforDAO.Instance.CreateBill();
                     textBox_ExcessCash.Text = "0";
                 }
                 listView_Order.Items.Clear();
-                int IDBill = BillInforDA.Instance.getIDBillInfor();
-                int BeverID = MenuDA.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
+                int IDBill = BillInforDAO.Instance.getIDBillInfor();
+                int BeverID = MenuDAO.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
                 bool CheckBeverages = orderDa.CheckExistBeverage(BeverID, IDBill);
                 int Amount = (int)numericUpDown_Amount.Value;
                 ICommand insertOrder = new InsertOrderCommand(orderDa, BeverID, IDBill, Amount);
@@ -155,8 +155,8 @@ namespace ManageCoffe
             {
                 listView_Order.Items.Clear();
                 int TotalPrice = int.Parse(textBox_TotalPrice.Text);
-                int IDBill = BillInforDA.Instance.getIDBillInfor();
-                BillInforDA.Instance.InsertBillInfor(TotalPrice, IDBill);
+                int IDBill = BillInforDAO.Instance.getIDBillInfor();
+                BillInforDAO.Instance.InsertBillInfor(TotalPrice, IDBill);
                 textBox_TotalPrice.Text = "0";
                 int ReceiveMoney = int.Parse(textBox_ReceivedMoney.Text);
                 int ExcessCash = ReceiveMoney - TotalPrice;

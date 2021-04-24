@@ -11,8 +11,8 @@ namespace ManageCoffe.DataAccessObject
     {
         private int BeverId;
         private int IdBill;
-        private OrderDA order;
-        public DeleteOrderCommand(OrderDA order, int BeverId, int IdBill)
+        private OrderDAO order;
+        public DeleteOrderCommand(OrderDAO order, int BeverId, int IdBill)
         {
             this.order = order;
             this.BeverId = BeverId;

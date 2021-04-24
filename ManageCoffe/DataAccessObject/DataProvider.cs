@@ -17,7 +17,7 @@ namespace ManageCoffe.DAO
             private set {instance = value; }
         }
         private DataProvider() { }
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ManageCoffe;Integrated Security=True";
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ManageCoffe;Integrated Security=True";
         public DataTable ExecuteQuery(string query)
         {
             DataTable data = new DataTable();

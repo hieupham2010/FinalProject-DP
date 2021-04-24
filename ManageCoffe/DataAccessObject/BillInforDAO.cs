@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataAccess
 {
-    public class BillInforDA
+    public class BillInforDAO
     {
-        private static BillInforDA instance;
-        public static BillInforDA Instance
+        private static BillInforDAO instance;
+        public static BillInforDAO Instance
         {
-            get { if (instance == null) instance = new BillInforDA(); return instance; }
+            get { if (instance == null) instance = new BillInforDAO(); return instance; }
             private set { instance = value; }
         }
-        private BillInforDA() { }
+        private BillInforDAO() { }
 
         public void CreateBill()
         {
@@ -30,7 +30,7 @@ namespace ManageCoffe.DataAccess
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
-                return new BillInforDT(item).IDBill1;
+                return new BillInforDTO(item).IDBill1;
             }
             return -1;
         }

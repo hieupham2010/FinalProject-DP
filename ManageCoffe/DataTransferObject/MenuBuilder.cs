@@ -13,9 +13,9 @@ namespace ManageCoffe.DataTransferObject
         private int BeverId;
         private string Name;
         private int Price;
-        public MenuDT Build()
+        public MenuDTO Build()
         {
-            return new MenuDT(BeverId, Name, Price);
+            return new MenuDTO(BeverId, Name, Price);
         }
 
         public IMenuBuilder SetBeverId(int BeverId)
