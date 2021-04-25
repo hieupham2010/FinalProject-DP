@@ -1,5 +1,6 @@
 ﻿using ManageCoffe.DataAccessLayer;
 using ManageCoffe.DataTransfer;
+using ManageCoffe.DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,11 +46,19 @@ namespace ManageCoffe
             string Password = textBox_Password.Text;
             if (CheckLogin(UserName , Password))
             {
-                AccountDTO loginAccount = AccountDAO.Instance.getAccountByUserName(UserName);
-                FormOrder fo = new FormOrder(loginAccount);
-                fo.Hide();
-                fo.ShowDialog();
-                this.Show();
+                INull isNull = AccountDAO.Instance.getAccountByUserName(UserName);
+                if(!isNull.IsNull())
+                {
+                    FormOrder fo = new FormOrder((AccountDTO)isNull);
+                    fo.Hide();
+                    fo.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản không tồn tại");
+                }
+                
             }
             else
             {

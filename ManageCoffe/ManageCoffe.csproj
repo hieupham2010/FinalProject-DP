@@ -61,8 +61,10 @@
     <Compile Include="DataTransferObject\BillInforDTO.cs" />
     <Compile Include="DataTransferObject\IAccountBuilder.cs" />
     <Compile Include="DataTransferObject\IMenuBuilder.cs" />
+    <Compile Include="DataTransferObject\INull.cs" />
     <Compile Include="DataTransferObject\MenuBuilder.cs" />
     <Compile Include="DataTransferObject\MenuDTO.cs" />
+    <Compile Include="DataTransferObject\NullAccount.cs" />
     <Compile Include="DataTransferObject\OrderDTO.cs" />
     <Compile Include="DataTransferObject\OrderInforDTO.cs" />
     <Compile Include="FormOrder.cs">

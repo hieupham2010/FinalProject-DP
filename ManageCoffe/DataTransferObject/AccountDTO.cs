@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManageCoffe.DataTransferObject;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ManageCoffe.DataTransfer
 {
-    public class AccountDTO
+    public class AccountDTO: INull
     {
         private string UserName;
         private string Password;
@@ -31,5 +32,10 @@ namespace ManageCoffe.DataTransfer
         public string Password1 { get => Password; set => Password = value; }
         public string DisplayName1 { get => NameDisplay; set => NameDisplay = value; }
         public int Type1 { get => TypeAccount; set => TypeAccount = value; }
+
+        public bool IsNull()
+        {
+            return false;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace ManageCoffe.DataAccessObject
             this.BeverId = BeverId;
             this.IdBill = IdBill;
         }
-        public void execute()
+        public void Execute()
         {
             order.DeleteBeverageFromOrder(BeverId, IdBill);
         }

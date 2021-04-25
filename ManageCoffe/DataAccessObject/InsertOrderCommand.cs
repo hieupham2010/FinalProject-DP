@@ -20,7 +20,7 @@ namespace ManageCoffe.DataAccessObject
             this.IdBill = IdBill;
             this.Amount = Amount;
         }
-        public void execute()
+        public void Execute()
         {
             order.InsertOrder(IdBill, BeverId, Amount);
         }

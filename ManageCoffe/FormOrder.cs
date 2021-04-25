@@ -94,7 +94,7 @@ namespace ManageCoffe
                 int BeverID = MenuDAO.Instance.GetIdFromSelectedTextbox(textBox_BeverageSelected.Text);
                 int IDBill = BillInforDAO.Instance.getIDBillInfor();
                 ICommand deleteOrder = new DeleteOrderCommand(orderDa, BeverID, IDBill);
-                deleteOrder.execute();
+                deleteOrder.Execute();
                 /*orderDa.DeleteBeverageFromOrder(BeverID, IDBill);*/
                 if (listView_Order.Items.Count <= 1)
                 {
@@ -139,7 +139,7 @@ namespace ManageCoffe
                 }
                 else
                 {
-                    insertOrder.execute();
+                    insertOrder.Execute();
                     /*orderDa.InsertOrder(IDBill, BeverID, Amount);*/
                 }
                 LoadOrderList();

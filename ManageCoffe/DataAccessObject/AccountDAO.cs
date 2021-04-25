@@ -1,6 +1,7 @@
 ﻿using ManageCoffe.DAO;
 using ManageCoffe.DataAccessObject;
 using ManageCoffe.DataTransfer;
+using ManageCoffe.DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -51,14 +52,14 @@ namespace ManageCoffe.DataAccessLayer
             DataTable result = DataProvider.Instance.ExecuteQuery(query);
             return result.Rows.Count > 0;
         }
-        public AccountDTO getAccountByUserName(string UserName)
+        public INull getAccountByUserName(string UserName)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM Account WHERE UserName = '" + UserName + "'");
-            foreach(DataRow item in data.Rows)
+            if(data.Rows.Count != 0)
             {
-                return new AccountDTO(item);
+                return new AccountDTO(data.Rows[0]);
             }
-            return null;
+            return new NullAccount();
         }
         public List<AccountDTO> GetAll()
         {

@@ -8,6 +8,6 @@ namespace ManageCoffe.DataAccessObject
 {
     public interface ICommand
     {
-        void execute();
+        void Execute();
     }
 }
